@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlConsult: 'https://api.planosdesauderms.com.br/consultacnpj.php?cnpj=',
+  urlConsult: 'https://seudominio.com/consultacnpj.php?cnpj=',
 };
 
 /*
