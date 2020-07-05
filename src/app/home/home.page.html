@@ -1,0 +1,648 @@
+<ion-content> 
+<ion-searchbar inputmode="search"
+placeholder="Consultar CNPJ" inputmode="text" type="text" 
+(ionChange)="onSearchChangeCnpj($event)" 
+enterkeyhint="search"
+debounce="300"
+color="dark"
+cancelButtonText="Limpar"
+animated="true"
+></ion-searchbar> 
+<!-- Searchbar in a Toolbar -->
+  <ion-item lines="none" class="ion-text-center" *ngIf="resultConsultCnpj?.situacao">
+  <ion-chip  mode="ios" outline="true" [ngClass]="{cssBaixada: resultConsultCnpj?.situacao == 'BAIXADA', cssAtiva: resultConsultCnpj?.situacao == 'ATIVA' }" >
+    <ion-label *ngIf="resultConsultCnpj?.situacao == 'BAIXADA'" color="danger">  Situação: {{ resultConsultCnpj?.situacao}}</ion-label>
+    <ion-label *ngIf="resultConsultCnpj?.situacao == 'ATIVA'" color="success">  Situação: {{ resultConsultCnpj?.situacao}}</ion-label>
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-chip>
+  </ion-item>
+  <div id="container" *ngIf="!resultConsultCnpj">
+    <img width="100" height="100" src="./assets/img/brasao2.gif" alt="Brasão" border="0">
+  </div>
+  <div class="container" *ngIf="resultConsultCnpj">
+    <div class="principal">
+      <table border="1" cellspacing="0" style="width:17cm;	line-height: 9pt;">
+        <tr>
+          <td style="border:solid windowtext .5pt; padding:5.65pt 5.65pt 5.65pt 5.65pt">
+            <!-- /\ -->
+            <!-- || -->
+            <!-- Fim Definições da tabela principal -->
+            <!-- Início Cabeçalho do Cartão -->
+            <table border="0" width="100%" style="line-height: 9pt;">
+              <tr>
+                <td valign="middle" align="left" width="60" height="60">
+                  <img width="60" height="60" src="./assets/img/brasao2.gif" alt="Brasão" border="0">
+                </td>
+                <td align="center">
+                  <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+                  <span face="Arial" size="4">
+                    <b>
+                      REPÚBLICA FEDERATIVA DO BRASIL
+                    </b>
+                  </span>
+                  <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+                  <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+                  <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+                  <span face="Arial">
+                    <b>
+                      CADASTRO NACIONAL DA PESSOA JURÍDICA
+                    </b>
+                  </span>
+                  <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+                </td>
+                <td valign="middle" align="left" width="60" height="60"></td>
+              </tr>
+            </table>
+            <!-- Fim Cabeçalho do Cartão -->
+            <!-- Início Linha NÚMERO DE INSCRIÇÃO -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;">
+              <tr>
+                <td width="24%" valign="top" border="1" style="	
+border-right: windowtext 0.5pt solid; 
+border-top: windowtext 0.5pt solid; 
+border-left: windowtext 0.5pt solid; 
+border-bottom: windowtext 0.5pt solid; 
+padding-left: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    NÚMERO DE INSCRIÇÃO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.cnpj}}</b><br>
+                    <b>{{resultConsultCnpj?.tipo}}</b>
+                  </span>
+                  <br>
+                </td>
+                <td width="52%" valign="center" style="BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid;BORDER-LEFT: medium none; BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; padding-bottom: 3.5pt;">
+                  <section class="ion-text-center">
+                    <span face="Arial" style="font-size: 10pt">
+                      <b>
+                        COMPROVANTE DE INSCRIÇÃO E DE SITUAÇÃO CADASTRAL
+                      </b>
+                    </span>
+                  </section>
+                </td>
+                <td width="24%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt;
+padding-bottom: 3.5pt;
+">
+
+                  <span face="Arial" style="font-size: 6pt">
+                    DATA DE ABERTURA
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{resultConsultCnpj?.abertura}}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Fim Linha NÚMERO DE INSCRIÇÃO -->
+            <!-- Início Linha NOME EMPRESARIAL -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;">
+              <tr>
+                <td width="100%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+
+                  <span face="Arial" style="font-size: 6pt">
+                    NOME EMPRESARIAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{resultConsultCnpj?.nome}} </b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha NOME EMPRESARIAL -->
+            <!-- Início Linha ESTABELECIMENTO -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;">
+              <tr>
+                <td width="88%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    TÍTULO DO ESTABELECIMENTO (NOME DE FANTASIA)
+                  </span>
+
+                  <br>
+
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.fantasia}} </b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <!-- Início Coluna PORTE DA EMPRESA -->
+                <td width="10%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid;BORDER-TOP: windowtext 0.5pt solid; BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; PADDING-LEFT: 3.5pt; padding-bottom: 3.5pt;">
+                  <span face="Arial" style="font-size: 6pt">
+                    PORTE
+                  </span>
+
+                  <br>
+
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.porte}}</b>
+                  </span>
+
+                  <br>
+                </td>
+                <!-- Fim Coluna PORTE DA EMPRESA -->
+
+
+              </tr>
+
+            </table>
+
+
+            <!-- Fim Linha ESTABELECIMENTO -->
+
+            <!-- Início Linha ATIVIDADE ECONOMICA -->
+
+
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+
+              <tr>
+
+                <td width="100%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+
+                  <span face="Arial" style="font-size: 6pt">
+                    CÓDIGO E DESCRIÇÃO DA ATIVIDADE ECONÔMICA PRINCIPAL
+                  </span>
+
+                  <br>
+
+                  <span face="Arial" style="font-size: 8pt" *ngFor="let atividadeprinicipal of resultConsultCnpj?.atividade_principal">
+                    <b> {{atividadeprinicipal?.code }} - {{ atividadeprinicipal?.text}} </b>
+                  </span>
+
+                  <br>
+                </td>
+
+              </tr>
+            </table>
+            <!-- Fim Linha ATIVIDADE ECONOMICA -->
+            <!-- Início Linha ATIVIDADE ECONOMICA SECUNDARIA-->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+
+              <tr>
+
+                <td width="100%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    CÓDIGO E DESCRIÇÃO DAS ATIVIDADES ECONÔMICAS SECUNDÁRIAS
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt" *ngFor="let atividadesecundaria of resultConsultCnpj?.atividades_secundarias">
+                    <b>{{atividadesecundaria?.code}} - {{atividadesecundaria?.text}}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha ATIVIDADE ECONOMICA SECUNDARIA -->
+            <!-- Início Linha NATUREZA JURÍDICA -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="100%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+
+                  <span face="Arial" style="font-size: 6pt">
+                    CÓDIGO E DESCRIÇÃO DA NATUREZA JURÍDICA
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.natureza_juridica}} </b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha NATUREZA JURÍDICA -->
+            <!-- Início Linha LOGRADOURO -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="50%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    LOGRADOURO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.logradouro }}</b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="10%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    NÚMERO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.numero }}</b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="36%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    COMPLEMENTO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.complemento }}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha LOGRADOURO -->
+            <!-- Início Linha CEP -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;" *ngIf="resultConsultCnpj.cep">
+              <tr>
+                <td width="18%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    CEP
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.cep }} </b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="30%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    BAIRRO/DISTRITO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.bairro }}</b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="38%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    MUNICÍPIO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.municipio }}</b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="10%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    UF
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.uf }}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha CEP -->
+            <!-- Início de Linha de Contato -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="50%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    ENDEREÇO ELETRÔNICO
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.email }} </b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="48%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    TELEFONE
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.telefone }}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim de Linha de Contato -->
+            <!-- Início de Linha de Ente Federativo -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;">
+              <tr>
+                <td width="100%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    ENTE FEDERATIVO RESPONSÁVEL (EFR)
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>
+                      {{resultConsultCnpj?.efr}}
+                    </b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim de Linha de Ente Federativo -->
+
+             <!-- Início  QSA -->
+             <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+             <table border="0" width="100%" style="BORDER-COLLAPSE: collapse;" *ngIf="resultConsultCnpj.qsa">
+               <tr>
+                 <td width="100%" valign="top" style="	
+ BORDER-RIGHT: windowtext 0.5pt solid; 
+ BORDER-TOP: windowtext 0.5pt solid; 
+ BORDER-LEFT: windowtext 0.5pt solid; 
+ BORDER-BOTTOM: windowtext 0.5pt solid; 
+ PADDING-LEFT: 3.5pt; 
+ padding-bottom: 3.5pt;
+ ">
+                   <span face="Arial" style="font-size: 6pt">
+                       (QSA)
+                   </span>
+                   <br>
+                   <span face="Arial" style="font-size: 8pt" *ngFor="let qsa of resultConsultCnpj?.qsa">
+                     <b>
+                       {{qsa.nome}} - {{ qsa.qual }}
+                     </b>
+                   </span>
+                   <br>
+                 </td>
+               </tr>
+             </table>
+             <!-- Fim de Linha de Ente Federativo -->
+
+
+            <!-- Início Linha SITUAÇÃO CADASTRAL -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="64%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    SITUAÇÃO CADASTRAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.situacao }} </b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="24%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    DATA DA SITUAÇÃO CADASTRAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b>{{ resultConsultCnpj?.data_situacao }}</b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha SITUACAO CADASTRAL -->
+            <!-- Início Linha MOTIVO DE SITUAÇÃO CADASTRAL -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="31%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    MOTIVO DE SITUAÇÃO CADASTRAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.motivo_situacao }} </b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha MOTIVO DE SITUAÇÃO CADASTRAL -->
+            <!-- Início Linha SITUAÇÃO ESPECIAL -->
+            <p style="margin:0cm; margin-bottom:0pt;">&nbsp;</p>
+            <table border="0" width="100%" style="	
+BORDER-COLLAPSE: collapse; 
+">
+              <tr>
+                <td width="64%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 
+BORDER-LEFT: windowtext 0.5pt solid; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    SITUAÇÃO ESPECIAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.situacao_especial }} </b>
+                  </span>
+                  <br>
+                </td>
+                <td width="2%" border="0" style="BORDER-RIGHT: windowtext 0.5pt solid;"> </td>
+                <td width="24%" valign="top" style="	
+BORDER-RIGHT: windowtext 0.5pt solid; 
+BORDER-TOP: windowtext 0.5pt solid; 	
+BORDER-LEFT: medium none; 
+BORDER-BOTTOM: windowtext 0.5pt solid; 
+PADDING-LEFT: 3.5pt; 
+padding-bottom: 3.5pt;
+">
+                  <span face="Arial" style="font-size: 6pt">
+                    DATA DA SITUAÇÃO ESPECIAL
+                  </span>
+                  <br>
+                  <span face="Arial" style="font-size: 8pt">
+                    <b> {{ resultConsultCnpj?.data_situacao_especial }} </b>
+                  </span>
+                  <br>
+                </td>
+              </tr>
+            </table>
+            <!-- Fim Linha SITUACAO ESPECIAL-->
+            <!--</td></tr></table>-->
+            <!-- Fim da tabela principal -->
+            <!-- || -->
+            <!-- \/ -->
+          </td>
+        </tr>
+      </table>
+      <!-- /\ -->
+      <!-- || -->
+      <br>
+    </div>
+  </div>
+<ion-footer class="ion-text-center">
+  <ion-chip color="dark" mode="ios" outline="true">
+    <ion-label>Versão - 1.0 by André Rds</ion-label>
+  </ion-chip>
+</ion-footer>
+</ion-content>
