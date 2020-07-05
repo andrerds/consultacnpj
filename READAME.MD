@@ -77,7 +77,12 @@ Abra seu navegador
 ```sh
 http://localhost:8100
 ```
+----
+### Funcionando.
 
+https://consultacnpj.surge.sh/
+
+----
 ### Conceitos finais
 
  - Brinque , se divirta
